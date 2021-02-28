@@ -1,0 +1,75 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simple Dialogs</title>
+</head>
+
+<body>
+
+  <header>
+    <h1>Simple Dialogs</h1>
+  </header>
+
+  <main>
+    <button id="alert-button">Alert</button>
+    <button id="confirm-button">Confirm</button>
+    <button id="prompt-button">Prompt</button>
+    <button id="safer-prompt-button">Safer Prompt</button>
+
+    <hr>
+
+    <output></output>
+  </main>
+
+
+  <!-- DOMPurify CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/2.2.6/purify.min.js"
+    integrity="sha512-rXAHWSMciPq2KsOxTvUeYNBb45apbcEXUVSIexVPOBnKfD/xo99uUe5M2OOsC49hGdUrkRLYsATkQQHMzUo/ew=="
+    crossorigin="anonymous"></script>
+
+  <script type="module">
+
+    window.addEventListener('DOMContentLoaded', () => {
+
+      function clearOutput() {
+        document.querySelector('output').innerHTML = '';
+      }
+
+      document.getElementById('alert-button').addEventListener('click', () => {
+        alert('Alert pressed!');
+      });
+
+      document.getElementById('confirm-button').addEventListener('click', () => {
+        clearOutput();
+        setTimeout(() => {
+          let confirmed = confirm('Will you confirm this?');
+          document.querySelector('output').innerHTML = `The value returned by the confirm method is: ${confirmed}`;
+        }, 0);
+      });
+
+      document.getElementById('prompt-button').addEventListener('click', () => {
+        clearOutput();
+        setTimeout(() => {
+          let response = prompt('Enter something:');
+
+          document.querySelector('output').innerHTML = `User response: ${response ? response : 'User didn\'t enter anything'}`;
+        }, 0);
+      });
+
+      document.getElementById('safer-prompt-button').addEventListener('click', () => {
+        clearOutput();
+        setTimeout(() => {
+          let response = prompt('Enter something:');
+          response = DOMPurify.sanitize(response);
+
+          document.querySelector('output').innerHTML = `User response: ${response ? response : 'User didn\'t enter anything'}`;
+        }, 0);
+      });
+
+    });
+  </script>
+</body>
+
+</html>

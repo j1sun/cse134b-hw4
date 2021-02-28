@@ -1,0 +1,70 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Custom Dialogs</title>
+</head>
+
+<body>
+
+  <header>
+    <h1>Custom Dialogs</h1>
+  </header>
+
+  <main>
+    <button id="alert-button">Alert</button>
+    <button id="confirm-button">Confirm</button>
+    <button id="prompt-button">Prompt</button>
+
+    <template id="dialog">
+      <dialog>
+        <h2>Title</h2>
+        <div>Content</div>
+      </dialog>
+    </template>
+
+    <hr>
+
+    <output></output>
+  </main>
+
+
+  <!-- DOMPurify CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/2.2.6/purify.min.js"
+    integrity="sha512-rXAHWSMciPq2KsOxTvUeYNBb45apbcEXUVSIexVPOBnKfD/xo99uUe5M2OOsC49hGdUrkRLYsATkQQHMzUo/ew=="
+    crossorigin="anonymous"></script>
+
+  <script type="module">
+
+    import { createAlertDialog, createConfirmDialog, createPromptDialog } from './customdialog.js';
+
+    window.addEventListener('DOMContentLoaded', () => {
+
+      function clearOutput() {
+        document.querySelector('output').innerHTML = '';
+      }
+
+      document.getElementById('alert-button').addEventListener('click', () => {
+        createAlertDialog();
+      });
+
+      document.getElementById('confirm-button').addEventListener('click', () => {
+        clearOutput();
+        setTimeout(() => {
+          createConfirmDialog();
+        }, 0);
+      });
+
+      document.getElementById('prompt-button').addEventListener('click', () => {
+        clearOutput();
+        setTimeout(() => {
+          createPromptDialog();
+        }, 0);
+      });
+
+    });
+  </script>
+</body>
+
+</html>

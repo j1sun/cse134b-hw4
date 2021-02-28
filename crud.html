@@ -1,0 +1,37 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog List</title>
+</head>
+
+<body>
+  <header>
+    <h1>Blog List</h1>
+    <hr>
+  </header>
+
+  <main>
+    <button id="add-button">Add blog</button>
+    <ul id="blog-list">
+
+    </ul>
+
+    <template id="blog-item-template">
+      <li class="blog-item">
+        <p>
+          <span class="blog-title">Title</span>
+          <em>(<time datetime="" class="blog-date">Date</time>)</em>
+          - <span class="blog-summary"></span>
+        </p>
+        <button class="edit-button">Edit</button>
+        <button class="delete-button">Delete</button>
+      </li>
+    </template>
+  </main>
+
+  <script src="blog.js"></script>
+</body>
+
+</html>
